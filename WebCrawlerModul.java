@@ -83,7 +83,23 @@ public class WebCrawlerModul {
 		return lines;
 	}
 
-	
+	public static ArrayList<String> YoutubeLinks(String url, int size) {
+		ArrayList<String> lines = new ArrayList<>();
+		for (String line : WebCrawler.getListCode(url)) {
+
+			if (line.contains("/watch?v=")) {
+				String l = line;
+				
+				l = l.substring(line.indexOf("/watch?"));
+				int f = 10;
+				f = f + size;
+				l = l.substring(0, f);
+				lines.add(l);
+			}
+		}
+		return lines;
+	}
+
 	public static void PrintResults(ArrayList<String> list) {
 		for (String l : list) {
 			System.out.println(l);
